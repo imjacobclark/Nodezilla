@@ -1,0 +1,24 @@
+{
+    "name": "Nodezilla",
+    "version": "0.0.1",
+    "description": "A load testing suite in Node.js",
+    "author": {
+        "name": "Jacob Clark",
+        "email": "heyjacobclark@gmail.com",
+        "web": "https://github.com/imjacobclark/"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:imjacobclark/Nodezilla.git"
+    },
+    "licenses": [{
+        "type": "MIT",
+        "url": "https://github.com/imjacobclark/Nodezilla/blob/master/LICENSE"
+    }],
+    "homepage": "https://github.com/imjacobclark/Nodezilla",
+    "dependencies": {
+    },
+    "devDependencies": {
+    },
+    "main": "Nodezilla.js"
+}
