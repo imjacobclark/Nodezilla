@@ -1,18 +1,20 @@
-var http 	= require('http');
-var nz 		= require('./Nodezilla')
-var nt 		= new nz();
+var express = require('express'),
+	app 	= express(),
+	nz 		= require('./Nodezilla'),
+	nt 		= new nz();
 
-http.createServer(function (req, res) {
-	res.writeHead(200, {'Content-Type': 'text/html'});
-	var cc = nt.createClients();
+app.set('views', __dirname + '/views')
+app.set('view engine', 'jade');
 
-	if(req.url == "/"){
-		console.log(cc);
-	}else{
-		res.write("Using a total of " + nt.virtualUsers + " virtual clients I have load tested " + nt.options.host + ".<br/>")
-		res.write("I have made a total of " + nt.reqMade + " requests, " + nt.successful + " were successful and " + nt.error + " failed.<br/>");
-		res.write("I calculated a medium page load time of " + nt.mediumPageLoad() + ".");
-		res.end("");
-	}
+app.get('/', function (req, res) {
+	cc = nt.createClients();
+	res.send("Clients created.");
+});
 
-}).listen(1337, '0.0.0.0');
+app.get('/summary', function(req, res){
+	res.render('index', { nodezilla: nt });
+})
+
+var server = app.listen(3000, function () {
+	console.log("Sever is servering...")
+})

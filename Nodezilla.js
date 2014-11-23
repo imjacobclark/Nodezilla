@@ -1,6 +1,6 @@
 var Nodezilla = function(){
     this.http            =   require('http'),
-    this.virtualUsers    =   1,
+    this.virtualUsers    =   5000,
     this.limiting        =   false,
     this.reqMade         =   0,
     this.reqLimit        =   2,
@@ -9,7 +9,7 @@ var Nodezilla = function(){
     this.successful      =   0,
     this.error           =   0,
     this.options         =   {
-        host: 'www.nags.org.uk'
+        host: 'opencomputerscience.co.uk'
     };
 }
 
