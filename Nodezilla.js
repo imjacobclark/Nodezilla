@@ -1,6 +1,7 @@
-var Nodezilla = function(){
+var Nodezilla = function(url, virtualusers){
     this.http            =   require('http'),
-    this.virtualUsers    =   5000,
+    this.virtualUsers    =   virtualusers,
+    this.halt            =   false,
     this.limiting        =   false,
     this.reqMade         =   0,
     this.reqLimit        =   2,
@@ -9,7 +10,7 @@ var Nodezilla = function(){
     this.successful      =   0,
     this.error           =   0,
     this.options         =   {
-        host: 'opencomputerscience.co.uk'
+        host: url
     };
 }
 
@@ -25,11 +26,10 @@ Nodezilla.prototype.recursiveRequest = function(){
 
     self.reqMade++;
 
-    if(!this.shouldHalt()){
+    if(!this.halt){
         this.http.get(this.options, function(resp){
             resp.on('data', function(){})
                 .on("connection", function(){
-                    console.log("Connected")
                 })
                 .on("end", function(){
                     self.onSuccess();
@@ -57,9 +57,7 @@ Nodezilla.prototype.onSuccess = function(){
 }
 
 Nodezilla.prototype.shouldHalt = function(){
-    if(this.limiting == true && this.reqMade >= this.reqLimit){
-        return true;
-    }
+    this.halt = true;
 }
 
 Nodezilla.prototype.mediumPageLoad = function(){

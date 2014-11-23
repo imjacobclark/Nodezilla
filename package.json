@@ -19,6 +19,7 @@
   ],
   "homepage": "https://github.com/imjacobclark/Nodezilla",
   "dependencies": {
+    "ejs": "^1.0.0",
     "express": "^4.10.2",
     "jade": "^1.7.0"
   },
