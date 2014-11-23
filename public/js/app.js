@@ -3,11 +3,11 @@ $('body').on('click', '[data-button="configure"]', function(e){
 	console.log();
 
 	$.get( "/start/" + $('#url').val() + "/" + $('#virtualusers').val(), function( data ) {
+		/**
+			This needs to be refactored into Handlebars templates and Socket.io
+		**/
 		setInterval(function(){
 			$.get( "/details", function( data ) {
-				/**
-					This needs to be refactored into Handlebars templates...
-				**/
 				$('[data-page="status"]').empty();
 				$('[data-page="status"]').append("<div class='page-header'><h1>Results</h1></div>");
 				$('[data-page="status"]').append("I have load tested <strong>" + data.host + "</strong> with <strong>" + data.virtualusers + "</strong> virtual users.<br/>");
@@ -26,7 +26,7 @@ $('body').on('click', '[data-button="configure"]', function(e){
 $('body').on('click', '[data-button="stop"]', function(e){
 	$.get( "/stop", function( data ) {
 		$("[data-button='stop']").hide();
-		alert("Stopped, no further requests will be made.");
+		alert("No further requests will be made, however we will wait for exsisting requests to respond..");
 	});
 
 	e.preventDefault();

@@ -24,9 +24,9 @@ Nodezilla.prototype.recursiveRequest = function(){
     var self    =   this;
     self.hrtime =   process.hrtime();
 
-    self.reqMade++;
-
     if(!this.halt){
+        self.reqMade++;
+        
         this.http.get(this.options, function(resp){
             resp.on('data', function(){})
                 .on("connection", function(){
