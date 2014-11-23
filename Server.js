@@ -25,6 +25,9 @@ app.get('/details', function (req, res) {
 	res.send(
 			{
 				"mediumLoadTime": nt.mediumPageLoad().toString(),
+				"firstLoadTime": nt.times[0],
+				"lastLoadTime": nt.times[nt.times.length-1],
+				"times": nt.times,
 				"requests": nt.reqMade.toString(),
 				"success": nt.successful.toString(),
 				"error": nt.error.toString(),
