@@ -10,7 +10,7 @@ A load testing suite in Node.js
 ### Installation:
 
 ```bash
-$ git clone https://github.com/imjacobclark/Nodezilla.git && cd Nodezilla
+$ wget https://github.com/imjacobclark/Nodezilla/archive/v0.0.1.tar.gz && tar -zxvf v0.0.1.tar.gz && cd Nodezilla-0.0.1
 $ npm install
 $ node Server.js
 ```
