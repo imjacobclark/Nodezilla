@@ -36,10 +36,10 @@ Nodezilla.prototype.batchRequests = function(){
     var self = this;
 
     setTimeout( function() {
-        for(var i = 0; i < this.batchedThreads; i ++){
+        for(var i = 0; i < this.batchedThreads; i++){
             self.createClients(true);
         }
-        self.batchRequests(i+1);
+        self.batchRequests();
     }, this.batchedSpawnTime );
 }
 
