@@ -18,7 +18,7 @@ io.on("connection", function (socket) {
 				"mediumLoadTime": nt.mediumPageLoad(),
 				"firstLoadTime": nt.times[0],
 				"lastLoadTime": nt.times[nt.times.length-1],
-				"times": nt.times,
+				//"times": nt.times,
 				"requests": nt.reqMade.toString(),
 				"success": nt.successful.toString(),
 				"error": nt.error.toString(),
