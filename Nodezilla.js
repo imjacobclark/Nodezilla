@@ -1,22 +1,26 @@
 var Nodezilla = function(url, virtualusers){
-    this.http            =   require('http'),
-    this.virtualUsers    =   virtualusers,
-    this.halt            =   false,
-    this.limiting        =   false,
-    this.reqMade         =   0,
-    this.reqLimit        =   2,
-    this.hrtime          =   process.hrtime(),
-    this.times           =   [],
-    this.successful      =   0,
-    this.error           =   0,
-    this.options         =   {
+    this.http                   =   require('http'),
+    this.virtualUsers           =   virtualusers,
+    this.halt                   =   false,
+    this.reqMade                =   0,
+    this.hrtime                 =   process.hrtime(),
+    this.times                  =   [],
+    this.successful             =   0,
+    this.error                  =   0,
+    this.options                =   {
         host: url
     };
 }
 
-Nodezilla.prototype.createClients = function(){
-    for(var i = 0; i < this.virtualUsers; i++){
-        this.recursiveRequest();
+Nodezilla.prototype.createClients = function(i){
+    var self = this;
+
+    this.recursiveRequest();
+
+    if(i < this.virtualUsers){
+        setTimeout( function() {
+            self.createClients(i+1);
+        }, 0 );  
     }
 }
 
