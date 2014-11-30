@@ -41,8 +41,8 @@ app.get('/start/:url/:virtualusers', function (req, res) {
 	res.set('Content-Type', 'application/json');
 
 	nt 		= new nz(req.param("url"), req.param("virtualusers")),
-	cc 		= nt.createClients(0);
-
+	cc 		= nt.createClients(false, 0);
+	
 	res.send('{"status": "ok"}');
 });
 

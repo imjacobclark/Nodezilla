@@ -1,6 +1,9 @@
-var Nodezilla = function(url, virtualusers){
+var Nodezilla = function(url, virtualusers, batched, batchedThreads, batchedSpawnTime){
     this.http                   =   require('http'),
     this.virtualUsers           =   virtualusers,
+    this.batched                =   batched,
+    this.batchedThreads         =   batchedThreads,
+    this.batchedSpawnTime       =   batchedSpawnTime,
     this.halt                   =   false,
     this.reqMade                =   0,
     this.hrtime                 =   process.hrtime(),
@@ -12,16 +15,32 @@ var Nodezilla = function(url, virtualusers){
     };
 }
 
-Nodezilla.prototype.createClients = function(i){
+Nodezilla.prototype.createClients = function(batched, i){
     var self = this;
+
+    if(batched)
+        batchRequests();
 
     this.recursiveRequest();
 
-    if(i < this.virtualUsers){
+    if(batched == false && i < this.virtualUsers){
         setTimeout( function() {
-            self.createClients(i+1);
+            self.createClients(false, i+1);
         }, 0 );  
+    }else{
+        this.recursiveRequest();
     }
+}
+
+Nodezilla.prototype.batchRequests = function(){
+    var self = this;
+
+    setTimeout( function() {
+        for(var i = 0; i < this.batchedThreads; i ++){
+            self.createClients(true);
+        }
+        self.batchRequests(i+1);
+    }, this.batchedSpawnTime );
 }
 
 Nodezilla.prototype.recursiveRequest = function(){
