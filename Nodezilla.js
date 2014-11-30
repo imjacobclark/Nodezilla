@@ -20,7 +20,7 @@ Nodezilla.prototype.createClients = function(i){
     if(i < this.virtualUsers){
         setTimeout( function() {
             self.createClients(i+1);
-        }, 1000 );  
+        }, 0 );  
     }
 }
 

@@ -26,7 +26,7 @@ io.on("connection", function (socket) {
 				"host": nt.options.host.toString(),
 			});
 		}
-    }, 0);
+    }, 1000);
 
     socket.on("disconnect", function () {
         clearInterval(interval);
