@@ -29,6 +29,7 @@ io.on("connection", function (socket) {
     }, 10);
 
     socket.on("disconnect", function () {
+    	nt.shouldHalt();
         clearInterval(interval);
     });
 });
@@ -48,19 +49,19 @@ app.get('/start/:url/:virtualusers', function (req, res) {
 
 app.get('/details', function (req, res) {
 	res.set('Content-Type', 'application/json');
-	res.send(
-			{
-				"mediumLoadTime": nt.mediumPageLoad(),
-				"firstLoadTime": nt.times[0],
-				"lastLoadTime": nt.times[nt.times.length-1],
-				"times": nt.times,
-				"requests": nt.reqMade.toString(),
-				"success": nt.successful.toString(),
-				"error": nt.error.toString(),
-				"virtualusers": nt.virtualUsers.toString(),
-				"host": nt.options.host.toString(),
-			}
-		);
+
+	res.send({
+			"mediumLoadTime": nt.mediumPageLoad(),
+			"firstLoadTime": nt.times[0],
+			"lastLoadTime": nt.times[nt.times.length-1],
+			"times": nt.times,
+			"requests": nt.reqMade.toString(),
+			"success": nt.successful.toString(),
+			"error": nt.error.toString(),
+			"virtualusers": nt.virtualUsers.toString(),
+			"host": nt.options.host.toString(),
+		}
+	);
 });
 
 app.get('/stop', function (req, res) {

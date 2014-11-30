@@ -12,5 +12,5 @@ A load testing suite in Node.js
 ```bash
 $ wget https://github.com/imjacobclark/Nodezilla/archive/v0.0.1.tar.gz && tar -zxvf v0.0.1.tar.gz && cd Nodezilla-0.0.1
 $ npm install
-$ node Server.js
+$ node server.js
 ```
