@@ -68,7 +68,7 @@ Nodezilla.prototype.mediumPageLoad = function(){
     var total = 0;
     for(var i = 0; i < this.times.length; i++){
         total = total + this.times[i];
-        return total/this.times.length;
+        return total/this.times.length.toString();
     }
 }
 

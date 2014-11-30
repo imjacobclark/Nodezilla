@@ -1,11 +1,39 @@
-var express = require('express'),
-	app 	= express(),
-	nz 		= require('./Nodezilla'),
-	nt 		= "";
+var express 	= require('express'),
+	app 		= express(),
+	http 		= require('http').Server(app),
+	io 			= require('socket.io')(http),
+	nz 			= require('./Nodezilla'),
+	nt 			= "";
 
 app.set('views', __dirname + '/views')
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
+
+io.on("connection", function (socket) {
+    var interval = setInterval(function () {
+    	if(nt == ""){
+    		socket.emit("message", {"data": "<strong>Waiting for data...</strong>"});
+    	}else{
+	        socket.emit("data", {
+				"mediumLoadTime": nt.mediumPageLoad(),
+				"firstLoadTime": nt.times[0],
+				"lastLoadTime": nt.times[nt.times.length-1],
+				"times": nt.times,
+				"requests": nt.reqMade.toString(),
+				"success": nt.successful.toString(),
+				"error": nt.error.toString(),
+				"virtualusers": nt.virtualUsers.toString(),
+				"host": nt.options.host.toString(),
+			});
+		}
+    }, 0);
+
+    socket.on("disconnect", function () {
+        clearInterval(interval);
+    });
+});
+
+
 
 app.get('/', function(req, res){
 	res.render('index');
@@ -42,6 +70,6 @@ app.get('/stop', function (req, res) {
 	res.send('{"status": "ok"}');
 });
 
-var server = app.listen(3000, function () {
-	console.log("Sever is servering...")
-})
+http.listen(3000, function(){
+  console.log('Nodezilla is now listening on port 3000.');
+});
