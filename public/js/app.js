@@ -59,6 +59,6 @@ function displayData(){
 		$('[data-page="status"]').append("<strong>Have a nice day.</strong><br/><br/>");
 	});
 
-	$('[data-page="actions"]').append("<button type='button' class='btn btn-danger' data-button='stop'>Stop Test</button> <button type='button' class='btn btn-success' data-button='reset'>New Test</button>");
+	$('[data-page="actions"]').append("<button type='button' class='btn btn-danger' data-button='stop'>Stop Test</button> <button type='button' class='btn btn-success' data-button='reset'>New Test</button><br/><br/>");
 }
 
