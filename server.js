@@ -33,8 +33,6 @@ io.on("connection", function (socket) {
     });
 });
 
-
-
 app.get('/', function(req, res){
 	res.render('index');
 });
@@ -52,7 +50,7 @@ app.get('/details', function (req, res) {
 	res.set('Content-Type', 'application/json');
 	res.send(
 			{
-				"mediumLoadTime": nt.mediumPageLoad().toString(),
+				"mediumLoadTime": nt.mediumPageLoad(),
 				"firstLoadTime": nt.times[0],
 				"lastLoadTime": nt.times[nt.times.length-1],
 				"times": nt.times,
