@@ -1,7 +1,7 @@
 Nodezilla
 =========
 
-A load testing suite in Node.js
+A rich featured response and load testing suite in Node.js.
 
 ### Requirements:
 * 1GB+ RAM & 2x CPUs
