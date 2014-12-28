@@ -78,6 +78,6 @@ app.get('/reset', function(req, res){
 	res.send('{"status": "ok"}');
 })
 
-http.listen(80, function(){
+http.listen(process.env.PORT || 3000, function(){
   console.log('Nodezilla is now listening on port 80.');
 });
