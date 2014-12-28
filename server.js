@@ -78,6 +78,6 @@ app.get('/reset', function(req, res){
 	res.send('{"status": "ok"}');
 })
 
-http.listen(3000, function(){
-  console.log('Nodezilla is now listening on port 3000.');
+http.listen(80, function(){
+  console.log('Nodezilla is now listening on port 80.');
 });
