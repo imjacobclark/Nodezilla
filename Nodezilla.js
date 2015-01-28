@@ -10,6 +10,8 @@ var Nodezilla = function(url, virtualusers, batched, batchedThreads, batchedSpaw
     this.times                  =   [],
     this.successful             =   0,
     this.error                  =   0,
+    this.isReset                =   false,
+    this.requestsBeforeShift    =   0,
     this.options                =   {
         host: url
     };
@@ -22,7 +24,6 @@ Nodezilla.prototype.createClients = function(batched, i){
         batchRequests();
 
     this.recursiveRequest();
-    this.resetTimes();
 
     if(batched == false && i < this.virtualUsers){
         setTimeout( function() {
@@ -86,16 +87,12 @@ Nodezilla.prototype.shouldHalt = function(){
 
 Nodezilla.prototype.mediumPageLoad = function(){
     var total = 0;
+    var result = 0;
     for(var i = 0; i < this.times.length; i++){
         total = total + this.times[i];
-        return total/this.times.length.toString();
+        result = total/this.times.length.toString();
     }
-}
-
-Nodezilla.prototype.resetTimes = function(){
-    setInterval(function(){
-        times = [];
-    }, 1000);
+    return (result/1000).toFixed(2);
 }
 
 module.exports = Nodezilla

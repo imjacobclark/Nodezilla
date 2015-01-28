@@ -55,7 +55,7 @@ function displayData(){
 		$('[data-page="status"]').append("I have load tested <strong>" + data.host + "</strong> with <strong>" + data.virtualusers + "</strong> virtual users.<br/>");
 		$('[data-page="status"]').append("Out of a total <strong>" + data.requests + "</strong> requests, <strong>" + data.success + "</strong> were successful and <strong>" + data.error + "</strong> failed<br/>");
 		$('[data-page="status"]').append("The first response time was <strong>" + data.firstLoadTime + "</strong> and the last <strong>" + data.lastLoadTime + "</strong>.<br/>");
-		$('[data-page="status"]').append("I calculated the medium page reponse time to be <strong>" + data.mediumLoadTime + "</strong>.<br/><br/>");
+		$('[data-page="status"]').append("I calculated the medium page reponse time to be <strong>" + data.mediumLoadTime + "</strong> seconds.<br/><br/>");
 		$('[data-page="status"]').append("<strong>Have a nice day.</strong><br/><br/>");
 	});
 
