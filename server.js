@@ -12,7 +12,7 @@ app.use(express.static(__dirname + '/public'));
 io.on("connection", function (socket) {
     var interval = setInterval(function () {
     	if(nt == ""){
-    		socket.emit("message", {"data": "<strong>Waiting for data...</strong>"});
+    		socket.emit("message", {"data": "<strong>Waiting...</strong>"});
     	}else{
 	        socket.emit("data", {
 				"mediumLoadTime": nt.mediumPageLoad(),
