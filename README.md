@@ -10,7 +10,7 @@ A rich featured response and load testing suite in Node.js.
 ### Installation:
 
 ```bash
-$ wget https://github.com/imjacobclark/Nodezilla/archive/v0.0.1.tar.gz && tar -zxvf v0.0.1.tar.gz && cd Nodezilla-0.0.1
+$ wget https://github.com/imjacobclark/Nodezilla/archive/v0.0.2.tar.gz && tar -zxvf v0.0.2.tar.gz && cd Nodezilla-0.0.2
 $ npm install
 $ node server.js
 ```
