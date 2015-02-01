@@ -52,15 +52,12 @@ Nodezilla.prototype.recursiveRequest = function(){
         
         this.http.get(this.options, function(resp){
             resp.on('data', function(){})
-                .on("connection", function(){
-                })
                 .on("end", function(){
                     self.onSuccess();
                 });
-        })
-            .on("error", function(e){
-                self.onError();
-            });
+        }).on("error", function(e){
+            self.onError();
+        });
     }
 };
 
