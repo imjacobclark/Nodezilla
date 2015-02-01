@@ -14,17 +14,7 @@ io.on("connection", function (socket) {
     	if(nt == ""){
     		socket.emit("message", {"data": "<strong>Waiting...</strong>"});
     	}else{
-	        socket.emit("data", {
-				"mediumLoadTime": nt.mediumPageLoad(),
-				"firstLoadTime": nt.times[0],
-				"lastLoadTime": nt.times[nt.times.length-1],
-				//"times": nt.times,
-				"requests": nt.reqMade.toString(),
-				"success": nt.successful.toString(),
-				"error": nt.error.toString(),
-				"virtualusers": nt.virtualUsers.toString(),
-				"host": nt.options.host.toString(),
-			});
+	        socket.emit("data", nt.getDetails());
 		}
     }, 10);
 
@@ -52,18 +42,7 @@ app.get('/details', function (req, res) {
 	if(nt == ""){
 		res.send({"status": false})
 	}else{
-		res.send({
-				"mediumLoadTime": nt.mediumPageLoad(),
-				"firstLoadTime": nt.times[0],
-				"lastLoadTime": nt.times[nt.times.length-1],
-				"times": nt.times,
-				"requests": nt.reqMade.toString(),
-				"success": nt.successful.toString(),
-				"error": nt.error.toString(),
-				"virtualusers": nt.virtualUsers.toString(),
-				"host": nt.options.host.toString(),
-			}
-		);
+		res.send(nt.getDetails());
 	}
 });
 
@@ -79,5 +58,5 @@ app.get('/reset', function(req, res){
 })
 
 http.listen(process.env.PORT || 3000, function(){
-  console.log('Nodezilla is now listening on port 80.');
+  console.log('Nodezilla is now listening on port 3000.');
 });

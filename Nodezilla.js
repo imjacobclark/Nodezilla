@@ -10,12 +10,10 @@ var Nodezilla = function(url, virtualusers, batched, batchedThreads, batchedSpaw
     this.times                  =   [],
     this.successful             =   0,
     this.error                  =   0,
-    this.isReset                =   false,
-    this.requestsBeforeShift    =   0,
     this.options                =   {
         host: url
     };
-}
+};
 
 Nodezilla.prototype.createClients = function(batched, i){
     var self = this;
@@ -32,7 +30,7 @@ Nodezilla.prototype.createClients = function(batched, i){
     }else{
         this.recursiveRequest();
     }
-}
+};
 
 Nodezilla.prototype.batchRequests = function(){
     var self = this;
@@ -43,7 +41,7 @@ Nodezilla.prototype.batchRequests = function(){
         }
         self.batchRequests();
     }, this.batchedSpawnTime );
-}
+};
 
 Nodezilla.prototype.recursiveRequest = function(){
     var self    =   this;
@@ -64,13 +62,13 @@ Nodezilla.prototype.recursiveRequest = function(){
                 self.onError();
             });
     }
-}
+};
 
 Nodezilla.prototype.onError = function(){
     this.error++;
     this.reqMade++;
     this.recursiveRequest();
-}
+};
 
 Nodezilla.prototype.onSuccess = function(){
     var elapsed     =   process.hrtime(this.hrtime),
@@ -79,11 +77,11 @@ Nodezilla.prototype.onSuccess = function(){
         this.times.push(ms);
         this.successful++;
         this.recursiveRequest();
-}
+};
 
 Nodezilla.prototype.shouldHalt = function(){
     this.halt = true;
-}
+};
 
 Nodezilla.prototype.mediumPageLoad = function(){
     var total = 0;
@@ -93,6 +91,20 @@ Nodezilla.prototype.mediumPageLoad = function(){
         result = total/this.times.length.toString();
     }
     return (result/1000).toFixed(2);
-}
+};
+
+Nodezilla.prototype.getDetails = function(){
+    return {
+        "mediumLoadTime": this.mediumPageLoad(),
+        "firstLoadTime": this.times[0],
+        "lastLoadTime": this.times[this.times.length-1],
+        "times": this.times,
+        "requests": this.reqMade.toString(),
+        "success": this.successful.toString(),
+        "error": this.error.toString(),
+        "virtualusers": this.virtualUsers.toString(),
+        "host": this.options.host.toString(),
+    }
+};
 
 module.exports = Nodezilla
