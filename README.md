@@ -1,11 +1,21 @@
 Nodezilla
 =========
 
-A rich featured response and load testing suite in Node.js.
+This is a side project where I hope to build a fully featured response and load testing application for modern websites where scalability and performance matters.
 
-### Requirements:
-* 1GB+ RAM & 2x CPUs
-* Node.js 0.10.*+
+###### Current features:
+
+* Continous response testing (linear) with average load time calculation.
+* (Partial, needs improving) REST API to create tests programatically.
+
+###### Coming soon:
+
+* Batched response testing (x requests every n seconds)
+* Incremented response testing (x*y requests every second)
+* Load testing through Phantom (page load times including images, stylesheets and JavaScript)
+* Real time graphs for page load times
+
+Install the latest _pre-released_ build for your testing pleasure:
 
 ### Installation:
 
