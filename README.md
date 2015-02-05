@@ -19,12 +19,14 @@ Install the latest _pre-released_ build for your testing pleasure:
 
 ### Installation:
 
-***With Docker***
+**With Docker**
 
 ```bash
 docker build -t nodezilla .
 docker run -it --rm --name nodezilla nodezilla
 ```
+
+**Standalone**
 
 ```bash
 $ wget https://github.com/imjacobclark/Nodezilla/archive/v0.0.2.tar.gz && tar -zxvf v0.0.2.tar.gz && cd Nodezilla-0.0.2
