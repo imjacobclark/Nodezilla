@@ -25,5 +25,6 @@
     "socket.io": "^1.2.1"
   },
   "devDependencies": {},
-  "main": "Nodezilla.js"
+  "main": "Nodezilla.js",
+  "start": "node server.js"
 }
