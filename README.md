@@ -23,7 +23,7 @@ Install the latest _pre-released_ build for your testing pleasure:
 
 ```bash
 docker build -t nodezilla .
-docker run -it --rm --name nodezilla nodezilla
+docker run -d -P --name nodezilla nodezilla
 ```
 
 **Standalone**
